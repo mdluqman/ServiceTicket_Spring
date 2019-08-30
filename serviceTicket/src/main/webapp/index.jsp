@@ -28,6 +28,7 @@ input[type=submit] {
 ${result}
 
 <body>
+
 <center>
 <form action="create" method="POST"><br/><br/>
 <h1>LOGIN</h1>
