@@ -35,7 +35,6 @@ public class EndUserDao {
 	}
 
 	public int raiseticket(EndUserBean ticket) {
-		// TODO Auto-generated method stub
 		List<ServiceEngineerBean> result = serepo.findSEbydept(ticket.getDept());
 		ServiceEngineerBean sb = new ServiceEngineerBean();
 		System.out.println("raising ticket");
@@ -92,7 +91,6 @@ public class EndUserDao {
 	}
 
 	public List<EndUserBean> gettickets(EndUserBean eub) {
-		// TODO Auto-generated method stub
 		System.out.println("in dao");
 		List<EndUserBean> l = eurepo.gettickets(eub.getusername());
 		for(int i=0;i<l.size();i++)
