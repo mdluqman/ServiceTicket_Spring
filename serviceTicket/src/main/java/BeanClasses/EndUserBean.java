@@ -20,7 +20,6 @@ public class EndUserBean {
 	private String ticketId;
 	private String ticketPriority;
 	private String ticketStatus;
-//	private String customerUsername;
 	private String workStation;
 	private String dateOfIssue;
 	private String requestedEndDAte;
@@ -35,9 +34,7 @@ public class EndUserBean {
 	public EndUserBean(String ticketId2, UserBean customerUsername2, String string, String string2, String string3,
 			String string4, String ticketPriority2, String ticketStatus2, String workStation2, deptInfo deptNo,
 			ServiceEngineerBean serviceEngineerId, String subject2) {
-		// TODO Auto-generated constructor stub
 		this.ticketId = ticketId2;
-//		this.customerUsername = customerUsername2;
 		this.username=customerUsername2;
 		this.dateOfAction = string;
 		this.dateOfCompletion=string2;
