@@ -28,7 +28,6 @@ public class EndUserBusiness {
 	}
 
 	public int verify(EndUserBean eub) {
-		// TODO Auto-generated method stub
 		boolean b = redv(eub);
 		System.out.println(b);
 		if(b)
@@ -43,7 +42,6 @@ public class EndUserBusiness {
 	}
 
 	public boolean redv(EndUserBean enduser) {
-		// TODO Auto-generated method stub
 		java.util.Date date = new java.util.Date();
 		java.sql.Date now = new java.sql.Date(date.getTime());
 		java.util.Date cd = null;
@@ -85,7 +83,6 @@ public class EndUserBusiness {
 	}
 
 	public List<EndUserBean> gettickets(EndUserBean eub) {
-		// TODO Auto-generated method stub
 		return eud.gettickets(eub);
 	}
 }
