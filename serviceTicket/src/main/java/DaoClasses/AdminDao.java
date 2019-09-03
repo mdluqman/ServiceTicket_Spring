@@ -42,8 +42,6 @@ public class AdminDao {
 	}
 
 	public String registerinbean(UserBean user) {
-		// TODO Auto-generated method stub
-		System.out.println("NAME: " + user.getUsername());
 		if (!userRepo.findById(user.getUsername()).isEmpty()) {
 			System.out.println(userRepo.findById(user.getUsername()));
 			return "user already registered(ie username already exists,try to Register with different username!)";
@@ -61,22 +59,18 @@ public class AdminDao {
 	}
 
 	public List<usertypeinfo> getusertype() {
-		// TODO Auto-generated method stub
 		return utiRepo.findAll();
 	}
 
 	public List<UserBean> getclient() {
-		// TODO Auto-generated method stub
 		return userRepo.findAll();
 	}
 
 	public List<ServiceEngineerBean> getse() {
-		// TODO Auto-generated method stub
 		return seRepo.findAll();
 	}
 
 	public String delete(UserBean user) {
-		// TODO Auto-generated method stub
 		List<EndUserBean> eubl = eurepo.findbyname(user.getUsername());
 		ServiceEngineerBean s = new ServiceEngineerBean();
 		for (int i = 0; i < eubl.size(); i++) {
@@ -124,7 +118,6 @@ public class AdminDao {
 	}
 
 	public String deletese(ServiceEngineerBean se) {
-		// TODO Auto-generated method stub
 		Optional<ServiceEngineerBean> s = seRepo.findById(se.getServiceEngineerId());
 		ServiceEngineerBean sebo = s.get();
 		List<ServiceEngineerBean> sel = seRepo.findSEbydept(sebo.getDept());
