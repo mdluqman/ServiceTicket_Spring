@@ -23,7 +23,6 @@ public class AdminBusiness {
 	}
 
 	public String registerinbean(UserBean user) {
-		// TODO Auto-generated method stub
 		return ad.registerinbean(user);
 	}
 
@@ -37,22 +36,18 @@ public class AdminBusiness {
 			}
 
 	public List<UserBean> getclient() {
-		// TODO Auto-generated method stub
 		return ad.getclient();
 	}
 
 	public List<ServiceEngineerBean> getse() {
-		// TODO Auto-generated method stub
 		return ad.getse();
 	}
 
 	public String delete(UserBean user) {
-		// TODO Auto-generated method stub
 		return ad.delete(user);
 	}
 
 	public String deletese(ServiceEngineerBean se) {
-		// TODO Auto-generated method stub
 		return ad.deletese(se);
 	}
 }
