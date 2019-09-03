@@ -26,7 +26,6 @@ public class ServiceEngineerDao {
 	DeptRepository drepo;
 
 	public List<EndUserBean> getsetickets(ServiceEngineerBean eub) {
-		// TODO Auto-generated method stub
 		System.out.println("in dao");
 		List<ServiceEngineerBean> s = serepo.findSEbyname(eub.getSEusername());
 		System.out.println(s.get(0).getServiceEngineerId());
@@ -51,7 +50,6 @@ public class ServiceEngineerDao {
 	}
 
 	public List<String> ReportperSE() {
-		// TODO Auto-generated method stub
 		List<ServiceEngineerBean> s = serepo.findAll();
 		List<String> avgseverity = new ArrayList<String>();
 		for (int i = 0; i < s.size(); i++) {
@@ -67,7 +65,6 @@ public class ServiceEngineerDao {
 	}
 
 	public List<String> avgage(ServiceEngineerBean se) {
-		// TODO Auto-generated method stub
 		List<ServiceEngineerBean> s = serepo.findSEbyname(se.getSEusername());
 		System.out.println(s.get(0).getServiceEngineerId());
 		se.setServiceEngineerId(s.get(0).getServiceEngineerId());
@@ -90,7 +87,6 @@ public class ServiceEngineerDao {
 	}
 
 	public int ChangeStat(EndUserBean e) {
-		// TODO Auto-generated method stub
 		java.util.Date date = new java.util.Date();
 		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 		Optional<EndUserBean> eul = eurepo.findById(e.getTicketId());
@@ -207,7 +203,6 @@ public class ServiceEngineerDao {
 	}
 
 	public int ChangePriority(EndUserBean eub) {
-		// TODO Auto-generated method stub
 		Optional<EndUserBean> eul = eurepo.findById(eub.getTicketId());
 		EndUserBean eubo = eul.get();
 		Optional<ServiceEngineerBean> sel = serepo.findById(eubo.getServiceengineer().getServiceEngineerId());
