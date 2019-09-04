@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import BeanClasses.EndUserBean;
-import BeanClasses.UserBean;
 import BeanClasses.deptInfo;
 import DaoClasses.EndUserDao;
 
