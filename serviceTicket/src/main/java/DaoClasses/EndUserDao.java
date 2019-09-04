@@ -98,4 +98,13 @@ public class EndUserDao {
 		return l;
 	}
 
+	public int verifytid(String tid) {
+		// TODO Auto-generated method stub
+		Optional<EndUserBean> l = eurepo.findById(tid);
+		if(l.isEmpty())
+			return 1;
+		else 
+			return 0;
+	}
+
 }

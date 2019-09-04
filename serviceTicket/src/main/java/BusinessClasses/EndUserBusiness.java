@@ -31,13 +31,26 @@ public class EndUserBusiness {
 		System.out.println(b);
 		if(b)
 		{
-			eub.setTicketId(gen());
+			int v = 0;
+			String tid;
+			do
+			{
+				tid = gen();
+				v = verifytid(tid);
+			}while(v!=1);
+			eub.setTicketId(tid);
 			eub.setTicketStatus("New");
 			int x = eud.raiseticket(eub);
 			return x;
 		}
 		else
 			return 8;
+	}
+
+	private int verifytid(String tid) {
+		// TODO Auto-generated method stub
+		int v = eud.verifytid(tid);
+		return v;
 	}
 
 	public boolean redv(EndUserBean enduser) {
