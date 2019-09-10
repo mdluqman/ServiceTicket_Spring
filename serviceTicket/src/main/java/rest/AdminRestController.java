@@ -1,4 +1,4 @@
-package RestControllers;
+package rest;
 
 import java.util.List;
 
@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import Beans.ServiceEngineerBean;
-import Beans.UserBean;
-import Beans.deptInfo;
-import Beans.usertypeinfo;
-import BusinessClasses.AdminBusiness;
-import BusinessClasses.LoginBusiness;
+import beans.ServiceEngineerBean;
+import beans.UserBean;
+import beans.deptInfo;
+import beans.usertypeinfo;
+import businessLogic.AdminFunctions;
+import businessLogic.LoginFunctions;
 
 @RestController
 @RequestMapping("/Admin")
@@ -21,7 +21,7 @@ public class AdminRestController {
 
 
 		@Autowired
-		AdminBusiness ab;
+		AdminFunctions ab;
 		
 		@RequestMapping(value = "/register", method = RequestMethod.GET)
 		public List<deptInfo> sample() {

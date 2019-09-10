@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
       <%@page import="javax.ws.rs.client.*" %>
     <%@page import="javax.ws.rs.core.*" %>
-    <%@page import="Beans.*" %>
+    <%@page import="beans.*" %>
     <%@page import="java.util.*" %>
     <%@page import="org.glassfish.jersey.client.ClientConfig" %>
 <!DOCTYPE html>

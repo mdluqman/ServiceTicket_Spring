@@ -1,18 +1,18 @@
-package BusinessClasses;
+package businessLogic;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import Beans.ServiceEngineerBean;
-import Beans.UserBean;
-import Beans.deptInfo;
-import Beans.usertypeinfo;
-import DaoClasses.AdminDao;
+import beans.ServiceEngineerBean;
+import beans.UserBean;
+import beans.deptInfo;
+import beans.usertypeinfo;
+import services.AdminDao;
 
 @Component
-public class AdminBusiness {
+public class AdminFunctions {
 
 	@Autowired
 	AdminDao ad = new AdminDao();

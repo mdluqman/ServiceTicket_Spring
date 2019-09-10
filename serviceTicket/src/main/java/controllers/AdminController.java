@@ -1,4 +1,4 @@
-package com.example.serviceTicket;
+package controllers;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import Beans.ServiceEngineerBean;
-import Beans.UserBean;
-import Beans.deptInfo;
-import Beans.usertypeinfo;
+import beans.ServiceEngineerBean;
+import beans.UserBean;
+import beans.deptInfo;
+import beans.usertypeinfo;
 
 @Controller
 public class AdminController {

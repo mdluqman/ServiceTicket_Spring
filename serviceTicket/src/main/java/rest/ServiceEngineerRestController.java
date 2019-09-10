@@ -1,4 +1,4 @@
-package RestControllers;
+package rest;
 
 import java.util.List;
 
@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import Beans.EndUserBean;
-import Beans.ServiceEngineerBean;
-import BusinessClasses.ServiceEngineerBusiness;
+import beans.EndUserBean;
+import beans.ServiceEngineerBean;
+import businessLogic.ServiceEngineerFunctions;
 
 @RestController
 @RequestMapping(value = "/ServiceEngineer")
 public class ServiceEngineerRestController {
 
 	@Autowired
-	ServiceEngineerBusiness seb;
+	ServiceEngineerFunctions seb;
 	
 	
 	@RequestMapping(value = "/getsetickets", method = RequestMethod.POST)

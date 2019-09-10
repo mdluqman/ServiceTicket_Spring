@@ -1,17 +1,17 @@
-package BusinessClasses;
+package businessLogic;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import Beans.EndUserBean;
-import Beans.ServiceEngineerBean;
-import DaoClasses.EndUserDao;
-import DaoClasses.ServiceEngineerDao;
+import beans.EndUserBean;
+import beans.ServiceEngineerBean;
+import services.EndUserDao;
+import services.ServiceEngineerDao;
 
 @Component
-public class ServiceEngineerBusiness {
+public class ServiceEngineerFunctions {
 
 	@Autowired
 	ServiceEngineerDao sed = new ServiceEngineerDao();

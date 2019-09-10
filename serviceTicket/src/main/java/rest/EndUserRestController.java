@@ -1,4 +1,4 @@
-package RestControllers;
+package rest;
 
 import java.util.List;
 
@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import Beans.EndUserBean;
-import Beans.UserBean;
-import Beans.deptInfo;
-import BusinessClasses.EndUserBusiness;
+import beans.EndUserBean;
+import beans.UserBean;
+import beans.deptInfo;
+import businessLogic.EndUserFunctions;
 
 @RestController
 @RequestMapping(value = "/EndUser")
 public class EndUserRestController {
 
 	@Autowired
-	EndUserBusiness eb;
+	EndUserFunctions eb;
 	
 	@RequestMapping(value = "/getdept", method = RequestMethod.GET)
 	public List<deptInfo> sample() {

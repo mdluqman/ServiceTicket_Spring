@@ -1,4 +1,4 @@
-package BusinessClasses;
+package businessLogic;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -7,12 +7,12 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import Beans.EndUserBean;
-import Beans.deptInfo;
-import DaoClasses.EndUserDao;
+import beans.EndUserBean;
+import beans.deptInfo;
+import services.EndUserDao;
 
 @Component
-public class EndUserBusiness {
+public class EndUserFunctions {
 
 	java.util.Date date = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(date.getTime());

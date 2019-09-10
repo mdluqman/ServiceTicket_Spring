@@ -1,4 +1,4 @@
-package com.example.serviceTicket;
+package controllers;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import Beans.EndUserBean;
-import Beans.UserBean;
-import Beans.deptInfo;
+import beans.EndUserBean;
+import beans.UserBean;
+import beans.deptInfo;
 
 @Controller
 public class EndUserController {

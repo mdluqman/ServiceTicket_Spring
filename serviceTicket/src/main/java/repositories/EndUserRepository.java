@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import Beans.EndUserBean;
-import Beans.ServiceEngineerBean;
-import Beans.UserBean;
-import Beans.deptInfo;
+import beans.EndUserBean;
+import beans.ServiceEngineerBean;
+import beans.UserBean;
+import beans.deptInfo;
 
 public interface EndUserRepository extends JpaRepository<EndUserBean, String>{
 

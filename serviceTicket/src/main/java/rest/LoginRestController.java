@@ -1,4 +1,4 @@
-package RestControllers;
+package rest;
 
 import java.util.List;
 
@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import Beans.UserBean;
-import Beans.usertypeinfo;
-import BusinessClasses.LoginBusiness;
+import beans.UserBean;
+import beans.usertypeinfo;
+import businessLogic.LoginFunctions;
 
 @RestController
 @RequestMapping("/valid")
 public class LoginRestController {
 
 	@Autowired
-	LoginBusiness lb;
+	LoginFunctions lb;
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String sample(@RequestBody UserBean user) {

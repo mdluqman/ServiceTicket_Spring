@@ -1,11 +1,11 @@
-package DaoClasses;
+package services;
 
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import Beans.UserBean;
+import beans.UserBean;
 import repositories.Repo;
 
 @Service

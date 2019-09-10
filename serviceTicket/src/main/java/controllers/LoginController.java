@@ -1,4 +1,4 @@
-package com.example.serviceTicket;
+package controllers;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import Beans.UserBean;
+import beans.UserBean;
 
 @Controller
 public class LoginController {

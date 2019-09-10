@@ -1,4 +1,4 @@
-package com.example.serviceTicket;
+package com.Assessment.serviceTicket;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,8 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"DaoClasses", "BusinessClasses","com.example.serviceTicket","RestControllers"})
-@EntityScan(basePackages = {"Beans"})
+@ComponentScan(basePackages = {"services", "businessLogic","com.Assessment.serviceTicket","rest","controllers"})
+@EntityScan(basePackages = {"beans"})
 @EnableJpaRepositories(basePackages = {"repositories"})
 public class ServiceTicketApplication {
 
