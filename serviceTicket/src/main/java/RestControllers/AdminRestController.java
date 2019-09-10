@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import BeanClasses.ServiceEngineerBean;
-import BeanClasses.UserBean;
-import BeanClasses.deptInfo;
-import BeanClasses.usertypeinfo;
+import Beans.ServiceEngineerBean;
+import Beans.UserBean;
+import Beans.deptInfo;
+import Beans.usertypeinfo;
 import BusinessClasses.AdminBusiness;
 import BusinessClasses.LoginBusiness;
 

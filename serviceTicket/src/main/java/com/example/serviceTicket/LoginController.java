@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import BeanClasses.UserBean;
+import Beans.UserBean;
 
 @Controller
 public class LoginController {

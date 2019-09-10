@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import BeanClasses.EndUserBean;
-import BeanClasses.UserBean;
-import BeanClasses.deptInfo;
+import Beans.EndUserBean;
+import Beans.UserBean;
+import Beans.deptInfo;
 
 @Controller
 public class EndUserController {

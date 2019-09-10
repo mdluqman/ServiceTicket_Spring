@@ -3,7 +3,7 @@
 
     <%@page import="javax.ws.rs.client.*" %>
     <%@page import="javax.ws.rs.core.*" %>
-    <%@page import="BeanClasses.*" %>
+    <%@page import="Beans.*" %>
     <%@page import="java.util.*" %>
     <%@page import="org.glassfish.jersey.client.ClientConfig" %>
 <!DOCTYPE html>

@@ -6,11 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import BeanClasses.EndUserBean;
-import BeanClasses.ServiceEngineerBean;
-import BeanClasses.UserBean;
-import BeanClasses.deptInfo;
-import BeanClasses.usertypeinfo;
+import Beans.EndUserBean;
+import Beans.ServiceEngineerBean;
+import Beans.UserBean;
+import Beans.deptInfo;
+import Beans.usertypeinfo;
 import repositories.DeptRepository;
 import repositories.EndUserRepository;
 import repositories.Repo;

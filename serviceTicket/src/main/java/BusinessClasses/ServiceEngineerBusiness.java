@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import BeanClasses.EndUserBean;
-import BeanClasses.ServiceEngineerBean;
+import Beans.EndUserBean;
+import Beans.ServiceEngineerBean;
 import DaoClasses.EndUserDao;
 import DaoClasses.ServiceEngineerDao;
 

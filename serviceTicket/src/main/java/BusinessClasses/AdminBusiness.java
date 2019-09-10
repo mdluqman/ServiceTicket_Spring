@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import BeanClasses.ServiceEngineerBean;
-import BeanClasses.UserBean;
-import BeanClasses.deptInfo;
-import BeanClasses.usertypeinfo;
+import Beans.ServiceEngineerBean;
+import Beans.UserBean;
+import Beans.deptInfo;
+import Beans.usertypeinfo;
 import DaoClasses.AdminDao;
 
 @Component

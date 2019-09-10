@@ -7,8 +7,8 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import BeanClasses.EndUserBean;
-import BeanClasses.deptInfo;
+import Beans.EndUserBean;
+import Beans.deptInfo;
 import DaoClasses.EndUserDao;
 
 @Component

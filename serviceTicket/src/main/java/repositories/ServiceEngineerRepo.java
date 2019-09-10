@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import BeanClasses.ServiceEngineerBean;
-import BeanClasses.UserBean;
-import BeanClasses.deptInfo;
+import Beans.ServiceEngineerBean;
+import Beans.UserBean;
+import Beans.deptInfo;
 
 
 public interface ServiceEngineerRepo extends JpaRepository<ServiceEngineerBean, String>{
