@@ -18,7 +18,7 @@ import repositories.ServiceEngineerRepo;
 import repositories.usertypeinfoRepository;
 
 @Service
-public class AdminDao {
+public class AdminServices {
 
 	@Autowired
 	DeptRepository repo;

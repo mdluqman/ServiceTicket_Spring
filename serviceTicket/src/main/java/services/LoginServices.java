@@ -9,7 +9,7 @@ import beans.UserBean;
 import repositories.Repo;
 
 @Service
-public class LoginDao{
+public class LoginServices{
 
 	@Autowired
 	Repo	 repo;

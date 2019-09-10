@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 
 import beans.EndUserBean;
 import beans.ServiceEngineerBean;
-import services.EndUserDao;
-import services.ServiceEngineerDao;
+import services.EndUserServices;
+import services.ServiceEngineerServices;
 
 @Component
 public class ServiceEngineerFunctions {
 
 	@Autowired
-	ServiceEngineerDao sed = new ServiceEngineerDao();
+	ServiceEngineerServices sed = new ServiceEngineerServices();
 
 	public List<EndUserBean> getsetickets(ServiceEngineerBean se) {
 		System.out.println("in b");

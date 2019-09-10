@@ -15,7 +15,7 @@ import repositories.ServiceEngineerRepo;
 
 
 @Service
-public class EndUserDao {
+public class EndUserServices {
 	
 	@Autowired
 	EndUserRepository eurepo;

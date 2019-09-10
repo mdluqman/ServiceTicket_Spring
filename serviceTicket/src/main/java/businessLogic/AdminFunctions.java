@@ -9,13 +9,13 @@ import beans.ServiceEngineerBean;
 import beans.UserBean;
 import beans.deptInfo;
 import beans.usertypeinfo;
-import services.AdminDao;
+import services.AdminServices;
 
 @Component
 public class AdminFunctions {
 
 	@Autowired
-	AdminDao ad = new AdminDao();
+	AdminServices ad = new AdminServices();
 	
 	public List<deptInfo> getdept()
 	{

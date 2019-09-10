@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import beans.EndUserBean;
 import beans.deptInfo;
-import services.EndUserDao;
+import services.EndUserServices;
 
 @Component
 public class EndUserFunctions {
@@ -19,7 +19,7 @@ public class EndUserFunctions {
 	
 	
 	@Autowired
-	EndUserDao eud = new EndUserDao();
+	EndUserServices eud = new EndUserServices();
 
 	public List<deptInfo> getdept() {
 		System.out.println("in b");

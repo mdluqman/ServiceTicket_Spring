@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import beans.UserBean;
-import services.LoginDao;
+import services.LoginServices;
 
 @Component
 public class LoginFunctions {
 
 	@Autowired
-	LoginDao ld;
+	LoginServices ld;
 	
 	
 	public String  getusertype(UserBean user1)
