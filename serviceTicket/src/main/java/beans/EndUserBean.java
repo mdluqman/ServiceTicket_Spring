@@ -26,11 +26,21 @@ public class EndUserBean {
 	private String dateOfAction;
 	private String dateOfCompletion;
 	private String subject;
+	@ManyToOne
+	ServiceEngineerBean serviceengineer;
+	
+	@ManyToOne
+	deptInfo dept;
+	
+	@ManyToOne
+	@JoinColumn(name="customerUsername")
+	UserBean username;
 	
 	public EndUserBean()
 	{
 		
 	}
+	
 	public EndUserBean(String ticketId2, UserBean customerUsername2, String string, String string2, String string3,
 			String string4, String ticketPriority2, String ticketStatus2, String workStation2, deptInfo deptNo,
 			ServiceEngineerBean serviceEngineerId, String subject2) {
@@ -47,8 +57,6 @@ public class EndUserBean {
 		this.serviceengineer=serviceEngineerId;
 		this.subject=subject2;
 	}
-
-
 
 	public String getTicketId() {
 		return ticketId;
@@ -81,13 +89,14 @@ public class EndUserBean {
 	public UserBean getusername() {
 		return username;
 	}
+	
 	public void setusername(UserBean username) {
 		this.username = username;
 	}
+	
 	public void setWorkStation(String workStation) {
 		this.workStation = workStation;
 	}
-
 
 	public String getDateOfIssue() {
 		return dateOfIssue;
@@ -144,17 +153,4 @@ public class EndUserBean {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-
-	@ManyToOne
-	ServiceEngineerBean serviceengineer;
-	
-	@ManyToOne
-	deptInfo dept;
-	
-	@ManyToOne
-	@JoinColumn(name="customerUsername")
-	UserBean username;
-	
-	
-
 }

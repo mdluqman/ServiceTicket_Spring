@@ -2,10 +2,8 @@ package services;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import beans.EndUserBean;
 import beans.ServiceEngineerBean;
 import beans.UserBean;
@@ -13,13 +11,12 @@ import beans.deptInfo;
 import beans.usertypeinfo;
 import repositories.DeptRepository;
 import repositories.EndUserRepository;
-import repositories.Repo;
-import repositories.ServiceEngineerRepo;
+import repositories.LoginRepository;
+import repositories.ServiceEngineerRepository;
 import repositories.usertypeinfoRepository;
 
 @Service
 public class AdminServices {
-
 	@Autowired
 	DeptRepository repo;
 
@@ -27,10 +24,10 @@ public class AdminServices {
 	EndUserRepository eurepo;
 
 	@Autowired
-	Repo userRepo;
+	LoginRepository userRepo;
 
 	@Autowired
-	ServiceEngineerRepo seRepo;
+	ServiceEngineerRepository seRepo;
 
 	@Autowired
 	usertypeinfoRepository utiRepo;
@@ -38,7 +35,6 @@ public class AdminServices {
 	public List<deptInfo> getdept() {
 		List<deptInfo> l = repo.findAll();
 		return l;
-
 	}
 
 	public String registerinbean(UserBean user) {
@@ -52,8 +48,6 @@ public class AdminServices {
 	}
 
 	public String registerinsebean(ServiceEngineerBean se) {
-
-		System.out.println("SID: " + se.getServiceEngineerId());
 		seRepo.save(se);
 		return "DONE";
 	}
@@ -78,7 +72,6 @@ public class AdminServices {
 			Optional<ServiceEngineerBean> ob2 = seRepo.findById(s.getServiceEngineerId());
 			ServiceEngineerBean sebo = ob2.get();
 			if (eubl.get(i).getTicketStatus().equals("New") || eubl.get(i).getTicketStatus().equals("WorkInProgress")) {
-
 				List<EndUserBean> list = eurepo.getsewaitingtickets(sebo.getServiceEngineerId(), "Waiting", user);
 				if (list.size() > 0) {
 					System.out.println(list.get(0).getTicketId() + " " + list.get(0).getusername());
@@ -113,7 +106,6 @@ public class AdminServices {
 			}
 		}
 		userRepo.deleteById(user.getUsername());
-		System.out.println("requested Delete Performed");
 		return "requested Delete Performed";
 	}
 
@@ -123,31 +115,26 @@ public class AdminServices {
 		List<ServiceEngineerBean> sel = seRepo.findSEbydept(sebo.getDept());
 		EndUserBean eubo = new EndUserBean();
 		eubo.setServiceengineer(sebo);
-		System.out.println("b4 if loop");
 		if (sebo.getDept().getDeptNo() != 4) {
 			if (sel.size() > 1) {
 				String x = del(sebo);
 				System.out.println(x);
 				return x;
-				}
-			else
+			} else
 				return "you cannot delete the only serviceEngineer in " + sebo.getDept().getDeptName() + "Department";
 		} else if (sel.size() > 2) {
 			String x = del(sebo);
 			return x;
-		} else
-		{
+		} else {
 			return "you cannot delete the only serviceEngineer in " + sebo.getDept().getDeptName() + "Department";
-		 
-	}	
+
+		}
 	}
-	
-	public String del(ServiceEngineerBean sebo)
-	{
+
+	public String del(ServiceEngineerBean sebo) {
 		List<ServiceEngineerBean> sel = seRepo.findSEbydept(sebo.getDept());
 		EndUserBean eubo = new EndUserBean();
 		eubo.setServiceengineer(sebo);
-		System.out.println(eubo.getServiceengineer().getServiceEngineerId());
 		if (sebo.getCurrentHighPrioityTicketId().equals("0")) {
 			List<EndUserBean> eul = eurepo.getsetickets(eubo.getServiceengineer());
 			for (int i = 0; i < eul.size(); i++) {
@@ -161,8 +148,8 @@ public class AdminServices {
 			seRepo.deleteById(sebo.getServiceEngineerId());
 			return "SE Deleted";
 		} else {
-			
-				return "Cannot Delete a ServiceEngineer as he is on DUTY";
+
+			return "Cannot Delete a ServiceEngineer as he is on DUTY";
 		}
-	} 
 	}
+}

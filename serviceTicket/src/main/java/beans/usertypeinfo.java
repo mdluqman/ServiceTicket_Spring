@@ -17,15 +17,17 @@ String typeOfUser;
 public int getUserTypeId() {
 	return userTypeId;
 }
+
 public void setUserTypeId(int userTypeId) {
 	this.userTypeId = userTypeId;
 }
+
 public String getTypeOfUser() {
 	return typeOfUser;
 }
+
 public void setTypeOfUser(String typeOfUser) {
 	this.typeOfUser = typeOfUser;
 }
-
 }
 

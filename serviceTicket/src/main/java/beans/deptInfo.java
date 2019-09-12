@@ -11,7 +11,6 @@ public class deptInfo {
 	@Id
 	private int deptNo;
 	private String deptName;
-
 	public int getDeptNo() {
 		return deptNo;
 	}
@@ -24,5 +23,4 @@ public class deptInfo {
 	public void setDeptName(String deptName) {
 		this.deptName = deptName;
 	}
-
 }

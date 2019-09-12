@@ -23,6 +23,9 @@ public class ServiceEngineerBean {
 	@OneToOne
 	@JoinColumn(name = "SEusername")
 	UserBean SEusername = new UserBean();
+	@ManyToOne
+	@JoinColumn(name = "deptNo")
+	private deptInfo dept;
 
 	public UserBean getSEusername() {
 		return SEusername;
@@ -31,10 +34,6 @@ public class ServiceEngineerBean {
 	public void setSEusername(UserBean sEusername) {
 		SEusername = sEusername;
 	}
-
-	@ManyToOne
-	@JoinColumn(name = "deptNo")
-	private deptInfo dept;
 
 	public String getServiceEngineerId() {
 		return ServiceEngineerId;
@@ -82,5 +81,4 @@ public class ServiceEngineerBean {
 				+ ", currentHighPrioityTicketId=" + currentHighPrioityTicketId + ", pending=" + pending
 				+ ", SEusername=" + SEusername + ", dept=" + dept + "]";
 	}
-
 }

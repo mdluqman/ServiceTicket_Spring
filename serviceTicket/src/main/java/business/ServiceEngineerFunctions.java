@@ -1,21 +1,17 @@
-package businessLogic;
+package business;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import beans.EndUserBean;
 import beans.ServiceEngineerBean;
-import services.EndUserServices;
 import services.ServiceEngineerServices;
 
 @Component
 public class ServiceEngineerFunctions {
-
 	@Autowired
 	ServiceEngineerServices sed = new ServiceEngineerServices();
-
+	
 	public List<EndUserBean> getsetickets(ServiceEngineerBean se) {
 		System.out.println("in b");
 		return sed.getsetickets(se);
@@ -28,7 +24,6 @@ public class ServiceEngineerFunctions {
 	public List<String> ReportperSE() {
 		return sed.ReportperSE();
 	}
-
 
 	public List<String> avgage(ServiceEngineerBean se) {
 		return sed.avgage(se);

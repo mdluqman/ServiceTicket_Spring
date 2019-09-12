@@ -1,12 +1,10 @@
-package businessLogic;
+package business;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import beans.EndUserBean;
 import beans.deptInfo;
 import services.EndUserServices;
@@ -16,8 +14,7 @@ public class EndUserFunctions {
 
 	java.util.Date date = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-	
-	
+
 	@Autowired
 	EndUserServices eud = new EndUserServices();
 
@@ -29,21 +26,18 @@ public class EndUserFunctions {
 	public int verify(EndUserBean eub) {
 		boolean b = redv(eub);
 		System.out.println(b);
-		if(b)
-		{
+		if (b) {
 			int v = 0;
 			String tid;
-			do
-			{
+			do {
 				tid = gen();
 				v = verifytid(tid);
-			}while(v!=1);
+			} while (v != 1);
 			eub.setTicketId(tid);
 			eub.setTicketStatus("New");
 			int x = eud.raiseticket(eub);
 			return x;
-		}
-		else
+		} else
 			return 8;
 	}
 

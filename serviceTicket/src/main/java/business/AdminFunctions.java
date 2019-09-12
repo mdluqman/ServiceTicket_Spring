@@ -1,10 +1,8 @@
-package businessLogic;
+package business;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import beans.ServiceEngineerBean;
 import beans.UserBean;
 import beans.deptInfo;
@@ -13,12 +11,10 @@ import services.AdminServices;
 
 @Component
 public class AdminFunctions {
-
 	@Autowired
 	AdminServices ad = new AdminServices();
-	
-	public List<deptInfo> getdept()
-	{
+
+	public List<deptInfo> getdept() {
 		return ad.getdept();
 	}
 
@@ -32,8 +28,8 @@ public class AdminFunctions {
 	}
 
 	public List<usertypeinfo> getusertype() {
-			return ad.getusertype();
-			}
+		return ad.getusertype();
+	}
 
 	public List<UserBean> getclient() {
 		return ad.getclient();
