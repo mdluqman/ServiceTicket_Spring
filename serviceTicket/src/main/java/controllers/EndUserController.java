@@ -26,12 +26,12 @@ public class EndUserController {
 	Environment environment;
 
 	/*
+	 * EndUser page to RaiseTicket
 	 * this is used to get the dept datials from deptInfo table
 	 */
-	@RequestMapping(value = "/getdept")
+	@RequestMapping(value = "/raiseticket")
 	public ModelAndView getdept() {
 		String port = environment.getProperty("local.server.port");
-		System.out.println("hi End User Controller");
 		RestTemplate restTemplate = new RestTemplate();
 		final String uri = "http://localhost:" + port + "/EndUser/getdept";
 		ResponseEntity<List<deptInfo>> response = restTemplate.exchange(uri, HttpMethod.GET, null,
@@ -43,12 +43,13 @@ public class EndUserController {
 	}
 
 	/*
+	 * RaiseTicket to EndUserOutput 
 	 * this function verifies if the details such as Requested-End-Date are given
 	 * proper or not And if given correctly then the ticket for the user will be
 	 * assigned to the appropriate ServiceEngineer
 	 * 
 	 */
-	@RequestMapping(value = "/verify")
+	@RequestMapping(value = "/ticketraised")
 	public ModelAndView raiseticket(EndUserBean eub, deptInfo di, HttpSession session) {
 		String port = environment.getProperty("local.server.port");
 		final String uri = "http://localhost:" + port + "/EndUser/verify";
@@ -91,7 +92,7 @@ public class EndUserController {
 	 * this function is used to display the logged in EndUsers ticket from the
 	 * EndUserBean table(that has records of all the tickets ever raised)
 	 */
-	@RequestMapping(value = "/view")
+	@RequestMapping(value = "/viewtickets")
 	public ModelAndView VIEWticket(HttpSession session) {
 		String port = environment.getProperty("local.server.port");
 		RestTemplate restTemplate = new RestTemplate();

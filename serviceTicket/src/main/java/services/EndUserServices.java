@@ -23,7 +23,6 @@ public class EndUserServices {
 	DeptRepository drepo;
 
 	public List<deptInfo> getdept() {
-		System.out.println("in dao");
 		return drepo.findAll();
 	}
 
@@ -61,7 +60,6 @@ public class EndUserServices {
 				return 3;
 			} else if (x < Integer.parseInt(ticket.getTicketPriority()) && j < 7 && y == 1) {
 				String h = sb.getCurrentHighPrioityTicketId();
-				System.out.println("ye ticket waitinh hota" + h + "aur ye new banta " + ticket.getTicketId());
 				ticket.setServiceengineer(sb);
 				ticket.setTicketStatus("New");
 				eurepo.save(ticket);
@@ -79,11 +77,7 @@ public class EndUserServices {
 	}
 
 	public List<EndUserBean> gettickets(EndUserBean eub) {
-		System.out.println("in dao");
 		List<EndUserBean> l = eurepo.gettickets(eub.getusername());
-		for (int i = 0; i < l.size(); i++) {
-			System.out.println(l.get(i).getTicketId());
-		}
 		return l;
 	}
 

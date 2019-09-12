@@ -27,6 +27,7 @@ public class ServiceEngineerController {
 	org.springframework.core.env.Environment environment;
 
 	/*
+	 * ServiceEngineer to ServiceEngineerOutput
 	 * this is used by serviceEngineer to view all of his tickets(ie.tickets
 	 * assigned to him) he can not just view but also respond to a ticket by
 	 * changing the desired tickets status or priority
@@ -56,11 +57,12 @@ public class ServiceEngineerController {
 	}
 
 	/*
+	 * ServiceEngineerOutput to ServiceEngineerOutput1
 	 * this guides to the functions that help the ServiceEngineer to change a
 	 * tickets status by that the change will be reflected in the EndUserBean table
 	 * (tickets table) and also the ServiceEngineer table if any changes required
 	 */
-	@RequestMapping(value = "/ChangeStat")
+	@RequestMapping(value = "/ChangeticketStat")
 	public ModelAndView ChangeStat(EndUserBean eub) {
 		String port = environment.getProperty("local.server.port");
 		RestTemplate restTemplate = new RestTemplate();
@@ -71,32 +73,31 @@ public class ServiceEngineerController {
 		return mv;
 	}
 
-	/*
+	/*ServiceEngineerOutput to ServiceEngineerOutput1
 	 * this guides to the functions that help the ServiceEngineer to change a
 	 * tickets priority by that the change will be reflected in the EndUserBean
 	 * table (tickets table) and also the ServiceEngineer table if any changes
 	 * required
 	 */
-	@RequestMapping(value = "/ChangePriority")
+	@RequestMapping(value = "/ChangeticketPriority")
 	public ModelAndView ChangePriority(EndUserBean eub) {
 		String port = environment.getProperty("local.server.port");
-		System.out.println("hi controller");
 		RestTemplate restTemplate = new RestTemplate();
 		final String uri = "http://localhost:" + port + "/ServiceEngineer/ChangePriority";
 		int x = restTemplate.postForObject(uri, eub, Integer.class);
-		System.out.println(x + " back in controller");
 		ModelAndView mv = new ModelAndView("/ServiceEngineerOutput1");
 		mv.addObject("ch", x);
 		return mv;
 	}
 
 	/*
+	 * ServiceEngineerOutput to ServiceEngineerOutput1
 	 * this will call function that will return the statistics of ticket in terms of
 	 * days based on their priority by stats i mean, itll return how much time was
 	 * taken by the ServiceEngineers to resolve tickets of priority high and medium
 	 * and low
 	 */
-	@RequestMapping(value = "/ReportperS")
+	@RequestMapping(value = "/ReportperSeverity")
 	public ModelAndView ReportperS() {
 		RestTemplate restTemplate = new RestTemplate();
 		String port = environment.getProperty("local.server.port");
@@ -112,6 +113,7 @@ public class ServiceEngineerController {
 	}
 
 	/*
+	 * ServiceEngineerOutput to ServiceEngineerOutput1
 	 * this will call function that will return the statistics of ticket in terms of
 	 * days based on their each serviceEngineer by stats i mean, itll return how
 	 * much time was taken by the particular ServiceEngineer to resolve tickets
@@ -133,6 +135,7 @@ public class ServiceEngineerController {
 	}
 
 	/*
+	 * ServiceEngineerOutput to ServiceEngineerOutput1
 	 * it gives the time in terms of days taken by an open ticket from the day it
 	 * was issued to current date
 	 */

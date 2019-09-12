@@ -22,14 +22,15 @@ public class AdminController {
 	org.springframework.core.env.Environment environment;
 
 	/*
-	 * this gets the list of deparments with there respective deptartment-id's so
-	 * that they can be displayed on the registraion page.... and it directs to
-	 * registration page(Helping admin to perform registration functionality
+	 * -to registration page- this gets the list of deparments with there respective
+	 * deptartment-id's so that they can be displayed on the registraion page....
+	 * and it directs to registration page(Helping admin to perform registration
+	 * functionality
 	 */
-	@RequestMapping(value = "/registerdisplay")
+	@RequestMapping(value = "/register")
 	public ModelAndView getdept() {
 		String port = environment.getProperty("local.server.port");
-		final String uri = "http://localhost:" + port + "/Admin/register";
+		final String uri = "http://localhost:" + port + "/Admin/registration";
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<List<deptInfo>> response = restTemplate.exchange(uri, HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<deptInfo>>() {
@@ -40,9 +41,10 @@ public class AdminController {
 	}
 
 	/*
-	 * Takes you to the RestController then to busness class and then to DAO class
-	 * that has function which is used to register the respective CLIENT(USER) ie
-	 * function that saves data in the table is called through this
+	 * -from registration page- Takes you to the RestController then to business
+	 * class and then to DAO class that has function which is used to register the
+	 * respective CLIENT(USER) ie. function that saves data in the table is called
+	 * through this
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView register(UserBean user, ServiceEngineerBean se, deptInfo di, usertypeinfo uti) {
@@ -75,9 +77,9 @@ public class AdminController {
 	}
 
 	/*
-	 * this is used to get the list of type of users from the usertypeinfo table in
-	 * the database this list is needed so that admin can select the type of
-	 * client/user he wants to register.
+	 * -to AdminOutput page- this is used to get the list of type of users from the
+	 * usertypeinfo table in the database this list is needed so that admin can
+	 * select the type of client/user he wants to register.
 	 */
 	@RequestMapping(value = "/viewlist")
 	public ModelAndView view() {
@@ -94,13 +96,12 @@ public class AdminController {
 	}
 
 	/*
-	 * this is used to direct to the functions that'll display the list of clients
-	 * according to the type selected
+	 * -to AdminOutput page- this is used to direct to the functions that'll display
+	 * the list of clients according to the type selected
 	 */
 	@RequestMapping(value = "/viewclient")
 	public ModelAndView viewclient(usertypeinfo u) {
 		String port = environment.getProperty("local.server.port");
-		System.out.println(u.getUserTypeId());
 		final String urw = "http://localhost:" + port + "/Admin/viewclient";
 		final String urx = "http://localhost:" + port + "/Admin/viewse";
 		final String uri = "http://localhost:" + port + "/Admin/view";
@@ -123,7 +124,6 @@ public class AdminController {
 			return mv;
 		} else {
 			if (u.getUserTypeId() == 2) {
-				System.out.println("hi to get admin details with type:" + u.getUserTypeId());
 				ResponseEntity<List<ServiceEngineerBean>> response = restTemplate.exchange(urx, HttpMethod.GET, null,
 						new ParameterizedTypeReference<List<ServiceEngineerBean>>() {
 						});
@@ -149,7 +149,6 @@ public class AdminController {
 			@RequestParam("id1") String seid) {
 		String port = environment.getProperty("local.server.port");
 		final String uri = "http://localhost:" + port + "/Admin/delete";
-		System.out.println("delete in controller" + username + " " + y + " " + seid);
 		user.setUsername(username);
 		String message1 = null;
 		if (y == 2) {
@@ -159,14 +158,12 @@ public class AdminController {
 			final String ury = "http://localhost:" + port + "/Admin/deleteSE";
 			RestTemplate restTemplate1 = new RestTemplate();
 			message1 = restTemplate1.postForObject(ury, se, String.class);
-			System.out.println(message1);
 			if (message1.equals("SE Deleted")) {
 				usertypeinfo u = new usertypeinfo();
 				u.setUserTypeId(y);
 				user.setUsertype(u);
 				RestTemplate restTemplate = new RestTemplate();
 				String message = restTemplate.postForObject(uri, user, String.class);
-				System.out.println(message + "delete performed for authentication");
 				ModelAndView mv = new ModelAndView("/Admin");
 				mv.addObject("message", message);
 				return mv;
@@ -181,7 +178,6 @@ public class AdminController {
 			user.setUsertype(u);
 			RestTemplate restTemplate = new RestTemplate();
 			String message = restTemplate.postForObject(uri, user, String.class);
-			System.out.println(message + "delete performed for authentication");
 			ModelAndView mv = new ModelAndView("/Admin");
 			mv.addObject("message", message);
 			return mv;

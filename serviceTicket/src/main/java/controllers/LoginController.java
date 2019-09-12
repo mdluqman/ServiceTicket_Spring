@@ -19,10 +19,10 @@ public class LoginController {
 	 * this is used to authenticate the login credentials and allows only if the
 	 * user is valid(ie. details present in the authentication table)
 	 */
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView sample(UserBean user, HttpSession session) {
 		String port = environment.getProperty("local.server.port");
-		final String uri = "http://localhost:" + port + "/valid/insert";
+		final String uri = "http://localhost:" + port + "/validate/logincredentials";
 		session.setAttribute("username", user.getUsername());
 		UserBean u = user;
 		RestTemplate restTemplate = new RestTemplate();

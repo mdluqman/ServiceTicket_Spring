@@ -39,7 +39,6 @@ public class AdminServices {
 
 	public String registerinbean(UserBean user) {
 		if (!userRepo.findById(user.getUsername()).isEmpty()) {
-			System.out.println(userRepo.findById(user.getUsername()));
 			return "user already registered(ie username already exists,try to Register with different username!)";
 		} else {
 			userRepo.save(user);
@@ -74,7 +73,6 @@ public class AdminServices {
 			if (eubl.get(i).getTicketStatus().equals("New") || eubl.get(i).getTicketStatus().equals("WorkInProgress")) {
 				List<EndUserBean> list = eurepo.getsewaitingtickets(sebo.getServiceEngineerId(), "Waiting", user);
 				if (list.size() > 0) {
-					System.out.println(list.get(0).getTicketId() + " " + list.get(0).getusername());
 					sebo.setCurrentHighPrioityTicketId(list.get(0).getTicketId());
 					Optional<EndUserBean> obj = eurepo.findById(list.get(0).getTicketId());
 					EndUserBean e = obj.get();
@@ -95,13 +93,11 @@ public class AdminServices {
 				seRepo.save(sebo);
 				eurepo.deleteById(eubl.get(i).getTicketId());
 			} else if (eubl.get(i).getTicketStatus().equals("Completed")) {
-				System.out.println("hi delete");
 				UserBean users = new UserBean();
 				users.setUsername("USER-DELETED");
 				Optional<EndUserBean> obj = eurepo.findById(eubl.get(i).getTicketId());
 				EndUserBean e = obj.get();
 				e.setusername(users);
-				System.out.println(e.getTicketId() + " " + e.getusername().getUsername());
 				eurepo.save(e);
 			}
 		}
@@ -118,7 +114,6 @@ public class AdminServices {
 		if (sebo.getDept().getDeptNo() != 4) {
 			if (sel.size() > 1) {
 				String x = del(sebo);
-				System.out.println(x);
 				return x;
 			} else
 				return "you cannot delete the only serviceEngineer in " + sebo.getDept().getDeptName() + "Department";

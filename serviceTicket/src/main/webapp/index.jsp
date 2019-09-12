@@ -30,7 +30,7 @@ ${result}
 <body>
 
 <center>
-<form action="create" method="POST"><br/><br/>
+<form action="login" method="POST"><br/><br/>
 <h1>LOGIN</h1>
 USERNAME: <input type="text" name="username"><br/><br/>
 PASSWORD: <input type="password" name="passwords"><br/><br/>

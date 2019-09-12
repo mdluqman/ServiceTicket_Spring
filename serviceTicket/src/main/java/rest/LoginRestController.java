@@ -10,12 +10,12 @@ import beans.usertypeinfo;
 import business.LoginFunctions;
 
 @RestController
-@RequestMapping("/valid")
+@RequestMapping("/validate")
 public class LoginRestController {
 	@Autowired
 	LoginFunctions lb;
 
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/logincredentials", method = RequestMethod.POST)
 	public String sample(@RequestBody UserBean user) {
 		usertypeinfo u = new usertypeinfo();
 		u.setUserTypeId(2);

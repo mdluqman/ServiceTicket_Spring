@@ -13,7 +13,6 @@ public class ServiceEngineerFunctions {
 	ServiceEngineerServices sed = new ServiceEngineerServices();
 	
 	public List<EndUserBean> getsetickets(ServiceEngineerBean se) {
-		System.out.println("in b");
 		return sed.getsetickets(se);
 	}
 

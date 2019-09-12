@@ -19,13 +19,11 @@ public class EndUserFunctions {
 	EndUserServices eud = new EndUserServices();
 
 	public List<deptInfo> getdept() {
-		System.out.println("in b");
 		return eud.getdept();
 	}
 
 	public int verify(EndUserBean eub) {
 		boolean b = redv(eub);
-		System.out.println(b);
 		if (b) {
 			int v = 0;
 			String tid;

@@ -16,7 +16,7 @@ ${message}
 <center>
 <h1>WELCOME <%=username %></h1>
 <div style="background-color:	#8FBC8F ;margin: 200px 50px 75px	 50px">
-  <a href="registerdisplay" >To Register a Admin / EndUser / ServiceEngineer </a><br/><br/><br/>
+  <a href="register" >To Register a Admin / EndUser / ServiceEngineer </a><br/><br/><br/>
 <a href="viewlist" >View/Delete- Clients(ServiceEngineer/Users)</a><br/><br/><br/>
 
 </div>

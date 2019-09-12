@@ -18,7 +18,7 @@ public class AdminRestController {
 	@Autowired
 	AdminFunctions ab;
 
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public List<deptInfo> sample() {
 		List<deptInfo> l = ab.getdept();
 		return l;
