@@ -31,8 +31,8 @@ public class ServiceEngineerRestController {
 		return seb.ReportperSE();
 	}
 
-	@RequestMapping(value = "/avgage", method = RequestMethod.POST)
-	public List<String> avgage(@RequestBody ServiceEngineerBean eub) {
+	@RequestMapping(value = "/ticketage", method = RequestMethod.POST)
+	public List<String> ticketage(@RequestBody ServiceEngineerBean eub) {
 		return seb.avgage(eub);
 	}
 

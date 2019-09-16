@@ -50,9 +50,19 @@ public class AdminController {
 	public ModelAndView register(UserBean user, ServiceEngineerBean se, deptInfo di, usertypeinfo uti) {
 		String port = environment.getProperty("local.server.port");
 		user.setUsertype(uti);
+		int m = 0;
+		if(uti.getUserTypeId()==2)
+		{
+			final String uri1 = "http://localhost:" + port + "/Admin/checkse";
+			RestTemplate restTemplate1 = new RestTemplate();
+			m= restTemplate1.postForObject(uri1, se, Integer.class);
+		}
+		if(m == 0)
+		{
 		final String uri = "http://localhost:" + port + "/Admin/registerclient";
 		RestTemplate restTemplate = new RestTemplate();
 		String message = restTemplate.postForObject(uri, user, String.class);
+		System.out.println(message+ "b4");
 		if (message.equals("Registered") && uti.getUserTypeId() == 2) {
 			final String url = "http://localhost:" + port + "/Admin/registerse";
 			RestTemplate restTemplate1 = new RestTemplate();
@@ -70,9 +80,19 @@ public class AdminController {
 			mv.addObject("message", message);
 			return mv;
 		} else {
+			System.out.println(message+ "after");
 			ModelAndView mv = new ModelAndView("/Admin");
 			mv.addObject("message", message);
 			return mv;
+		}
+		}
+		else 
+		{
+			System.out.println(m);
+			ModelAndView mv = new ModelAndView("/Admin");
+			String msg="some other ServiceEngineer Already Exist with the provided seid, kindly give a unique id!!";
+			mv.addObject("message", msg);
+			return mv;	
 		}
 	}
 

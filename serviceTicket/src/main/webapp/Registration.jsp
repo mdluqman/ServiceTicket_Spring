@@ -77,8 +77,10 @@ input[type=submit] {
 <script type="text/javascript">
 function checkPassword() { 
     password1 = document.forms["form"]["password"].value; 
-    password2 =  document.forms["form"]["confirmpassword"].value; 
-
+    password2 =  document.forms["form"]["confirmpassword"].value;
+    seid =  document.forms["form"]["seid"].value;
+    role =  document.forms["form"]["rt"].value; 
+    var ddlPassport = document.getElementById("rt");
     // If password not entered 
     if (password1 == '') {
         alert ("Please enter Password"); 
@@ -96,11 +98,17 @@ function checkPassword() {
         alert ("\nPassword did not match: Please try again...") 
         return false; 
     } 
-
+    
+    else if(role == 2 && seid == '')
+        {
+        alert ("Please provide seid for ServiceEngineer"); 
+	    return false;
+        }
     // If same return True. 
-    else{ 
-        return true; 
-    } 
+    else
+        {
+        return true;
+        }
 } 
 </script>
 </head>
@@ -138,7 +146,7 @@ function checkPassword() {
 			<br/>
 			<br/>
 			<div id="dvPassport" style="display: none">
-			provide a UID for ServiceEngineer<input type="text" name="ServiceEngineerId" placeholder="eg : seid_____"> 
+			provide a UID for ServiceEngineer<input type="text" name="ServiceEngineerId" id="seid" placeholder="eg : seid_____"> 
 			<br/>
      Department*:    <select name="deptNo"> 
   <%
@@ -153,12 +161,13 @@ function checkPassword() {
 			<input type="submit" name="value"
 				value="Register!" >
 				
+<center>OR</center>
 	</form>
 </div>
-<br/><br/><br/>
 </form>
 	<form action="Admin.jsp" method="POST">
-	<input type="submit" value="HomePage">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="submit" value="Return to HomePage">
 	</form>
 <script type="text/javascript">
     function ShowHideDiv() {

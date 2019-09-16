@@ -29,6 +29,11 @@ public class AdminRestController {
 		return ab.registerinbean(user);
 	}
 
+	@RequestMapping(value = "/checkse", method = RequestMethod.POST)
+	public int checkse(@RequestBody ServiceEngineerBean se) {
+		return ab.checkse(se);
+	}
+	
 	@RequestMapping(value = "/registerse", method = RequestMethod.POST)
 	public String registerSE(@RequestBody ServiceEngineerBean se) {
 		return ab.registerinsebean(se);

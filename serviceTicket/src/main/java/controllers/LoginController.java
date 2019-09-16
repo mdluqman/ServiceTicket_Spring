@@ -20,7 +20,7 @@ public class LoginController {
 	 * user is valid(ie. details present in the authentication table)
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView sample(UserBean user, HttpSession session) {
+	public ModelAndView login(UserBean user, HttpSession session) {
 		String port = environment.getProperty("local.server.port");
 		final String uri = "http://localhost:" + port + "/validate/logincredentials";
 		session.setAttribute("username", user.getUsername());

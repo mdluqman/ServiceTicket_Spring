@@ -139,7 +139,7 @@ public class ServiceEngineerController {
 	 * it gives the time in terms of days taken by an open ticket from the day it
 	 * was issued to current date
 	 */
-	@RequestMapping(value = "/avgage")
+	@RequestMapping(value = "/openticketage")
 	public ModelAndView avgage(HttpSession session) {
 		String port = environment.getProperty("local.server.port");
 		UserBean u = new UserBean();
@@ -147,7 +147,7 @@ public class ServiceEngineerController {
 		ServiceEngineerBean seb = new ServiceEngineerBean();
 		seb.setSEusername(u);
 		RestTemplate restTemplate = new RestTemplate();
-		final String uri = "http://localhost:" + port + "/ServiceEngineer/avgage";
+		final String uri = "http://localhost:" + port + "/ServiceEngineer/ticketage";
 		HttpEntity<ServiceEngineerBean> requestEntity = new HttpEntity<>(seb);
 		ResponseEntity<List<String>> response = restTemplate.exchange(uri, HttpMethod.POST, requestEntity,
 				new ParameterizedTypeReference<List<String>>() {

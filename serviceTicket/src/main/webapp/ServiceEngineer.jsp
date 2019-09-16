@@ -16,7 +16,7 @@ you can perform the following<br/><br/><br/>
 <a href="ViewandRespond">View & Respond to a ticket</a><br><br><br>
 <a href="ReportperSeverity">PerformanceReportPerSeverity</a><br><br><br>
 <a href="ReportperSE">PerformanceReportPerServiceEngineer</a><br><br><br>
-<a href="avgage">AgeOfOpenTicket</a><br><br><br><br/><br/><br/>
+<a href="openticketage">AgeOfOpenTicket</a><br><br><br><br/><br/><br/>
 <form action="logout" method="POST">
 <input type="submit" name="action" value="LOGOUT">
 </form>

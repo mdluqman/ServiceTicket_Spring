@@ -147,4 +147,15 @@ public class AdminServices {
 			return "Cannot Delete a ServiceEngineer as he is on DUTY";
 		}
 	}
+
+	public int checkse(ServiceEngineerBean se) {
+		// TODO Auto-generated method stub
+		Optional<ServiceEngineerBean> check = seRepo.findById(se.getServiceEngineerId());
+		if(check.isEmpty())
+		{
+			return 0;
+		}
+		else 
+			return 1;
+	}
 }

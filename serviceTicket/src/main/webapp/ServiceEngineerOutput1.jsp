@@ -104,6 +104,10 @@ else{			switch (ch) {
 				out.println(
 						"<center><h3>Sorry you cannot change priority of a ticket you are currently working on!! rather try changing the status to achieve your requirement </h3></center>");
 				break;	
+			case 13:
+				out.println(
+						"<center><h3>Please provide a <b>Valid Ticket-Id</b>  </h3></center>");
+				break;								
 			}
 		}
 %>

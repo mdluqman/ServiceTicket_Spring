@@ -46,4 +46,9 @@ public class AdminFunctions {
 	public String deletese(ServiceEngineerBean se) {
 		return ad.deletese(se);
 	}
+
+	public int checkse(ServiceEngineerBean se) {
+		// TODO Auto-generated method stub
+		return ad.checkse(se);
+	}
 }

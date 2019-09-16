@@ -82,6 +82,11 @@ public class ServiceEngineerServices {
 		java.util.Date date = new java.util.Date();
 		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 		Optional<EndUserBean> eul = eurepo.findById(e.getTicketId());
+		if(eul.isEmpty())
+		{
+			return 13;
+		}
+		else {
 		EndUserBean eubo = eul.get();
 		Optional<ServiceEngineerBean> sel = serepo.findById(eubo.getServiceengineer().getServiceEngineerId());
 		ServiceEngineerBean sebo = sel.get();
@@ -184,11 +189,17 @@ public class ServiceEngineerServices {
 				return 1;
 			}
 		}
+		}
 		return 3;
 	}
 
 	public int ChangePriority(EndUserBean eub) {
 		Optional<EndUserBean> eul = eurepo.findById(eub.getTicketId());
+		if(eul.isEmpty())
+		{
+			return 13;
+		}
+		else {
 		EndUserBean eubo = eul.get();
 		Optional<ServiceEngineerBean> sel = serepo.findById(eubo.getServiceengineer().getServiceEngineerId());
 		ServiceEngineerBean sebo = sel.get();
@@ -214,6 +225,7 @@ public class ServiceEngineerServices {
 			eubo.setTicketPriority(eub.getTicketPriority());
 			eurepo.save(eubo);
 			return 2;
+		}
 		}
 	}
 }
