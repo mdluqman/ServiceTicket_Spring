@@ -16,7 +16,7 @@ public class LoginRestController {
 	LoginFunctions lb;
 
 	@RequestMapping(value = "/logincredentials", method = RequestMethod.POST)
-	public String sample(@RequestBody UserBean user) {
+	public String sample(@RequestBody UserBean user) throws Exception {
 		usertypeinfo u = new usertypeinfo();
 		u.setUserTypeId(2);
 		user.setUsertype(u);

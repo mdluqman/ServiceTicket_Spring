@@ -10,7 +10,7 @@ public class LoginFunctions {
 	@Autowired
 	LoginServices ld;
 	
-	public String  getusertype(UserBean user1)
+	public String  getusertype(UserBean user1) throws Exception
 	{
 		String x = ld.validate(user1);
 		return x;

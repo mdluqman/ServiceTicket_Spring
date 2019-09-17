@@ -26,24 +26,28 @@ public class LoginController {
 		session.setAttribute("username", user.getUsername());
 		UserBean u = user;
 		RestTemplate restTemplate = new RestTemplate();
-		String result = restTemplate.postForObject(uri, u, String.class);
-		if (result.equals("Admin")) {
-			ModelAndView mv = new ModelAndView("/Admin");
-			mv.addObject("username", user.getUsername());
-			return mv;
-		} else if (result.equals("ServiceEngineer")) {
-			ModelAndView mv = new ModelAndView("/ServiceEngineer");
-			mv.addObject("username", user.getUsername());
-			return mv;
-		} else if (result.equals("EndUser")) {
-			ModelAndView mv = new ModelAndView("/EndUser");
-			mv.addObject("username", user.getUsername());
-			return mv;
-		} else {
-			ModelAndView mv = new ModelAndView("/index");
-			mv.addObject("result", result);
-			return mv;
+		ModelAndView mv = new ModelAndView("/index");
+		try
+		{
+			String result = restTemplate.postForObject(uri, u, String.class);			
+			if (result.equals("Admin")) {
+				mv = new ModelAndView("/Admin");
+				mv.addObject("username", user.getUsername());
+				return mv;
+			} else if (result.equals("ServiceEngineer")) {
+				mv = new ModelAndView("/ServiceEngineer");
+				mv.addObject("username", user.getUsername());
+				return mv;
+			} else if (result.equals("EndUser")) {
+				mv = new ModelAndView("/EndUser");
+				mv.addObject("username", user.getUsername());
+			}
 		}
+		catch(Exception e)
+		{
+			mv.addObject("result", "Please Provide Valid Username/Password");		
+		}
+		return mv;
 	}
 
 	/*
