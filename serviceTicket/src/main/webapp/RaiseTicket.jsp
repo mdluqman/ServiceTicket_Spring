@@ -3,7 +3,7 @@
 
     <%@page import="javax.ws.rs.client.*" %>
     <%@page import="javax.ws.rs.core.*" %>
-    <%@page import="BeanClasses.*" %>
+    <%@page import="beans.*" %>
     <%@page import="java.util.*" %>
     <%@page import="org.glassfish.jersey.client.ClientConfig" %>
 <!DOCTYPE html>
@@ -29,7 +29,7 @@ else if(ch==8)
 	%>
 <center><div style="background-color:#DC7633;width:800px; margin:0 auto;" >
 <h1>Raise Ticket</h1> 
-<form action="verify" name="RaiseTicket" method="post">
+<form action="ticketraised" name="RaiseTicket" method="post">
   Department*:    <select name="deptNo"> 
   <%
   for(deptInfo department: dept){

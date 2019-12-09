@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
-<%@page import="BeanClasses.EndUserBean"%>
+<%@page import="beans.EndUserBean"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +29,7 @@
 		}
 		out.println("</table>");
 		%>
-		<form action='ChangeStat' method='post'>
+		<form action='ChangeticketStat' method='post'>
 		<br />
 		<br />
 		<br /> Update the Status of a desired ticket by providing its TICKET-ID and select from options given below:
@@ -40,7 +40,7 @@
 			<option value="Completed">Work Done</option></select> <input type="submit"
 			name="value" value="changestat"><br /></form>
 		<br />OR<br />
-		<form action ="ChangePriority " method="POST">
+		<form action ="ChangeticketPriority " method="POST">
 		<br /> If would you like to change the Priority of a desired ticket by providing its TICKET-ID and select from options given below:<br/>
 		<input type="text" name="ticketId"><br />
 		<select name="ticketPriority">
