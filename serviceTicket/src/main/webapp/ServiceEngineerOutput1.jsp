@@ -79,8 +79,8 @@
 	</tr>
 	<%
 		}%>
-		</table>
-		<%
+</table>
+<%
 		}
 	
 else{			switch (ch) {
@@ -94,7 +94,7 @@ else{			switch (ch) {
 				break;
 			case 3:
 				out.println(
-						"<center><h3>Sorry!! but you are trying to deal with a dealt or an Incorrigible ticketid</h3></center>");
+						"<center><h3>Sorry!! but you are trying to deal with a dealt or an invalid ticketid</h3></center>");
 				break;
 			case 11:
 				out.println(
@@ -102,7 +102,7 @@ else{			switch (ch) {
 				break;
 			case 12:
 				out.println(
-						"<center><h3>Sorry you cannot change priority of a ticket you are currently working on!! rather try changing the status to achieve your requirement </h3></center>");
+					"<center><h3>you cannot change priority of a ticket which is under progress or have provided an invalid ticket-ID  </h3></center>");
 				break;	
 			case 13:
 				out.println(

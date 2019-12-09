@@ -5,34 +5,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import beans.EndUserBean;
 import beans.ServiceEngineerBean;
+import beans.UserBean;
 import services.ServiceEngineerServices;
 
 @Component
 public class ServiceEngineerFunctions {
 	@Autowired
-	ServiceEngineerServices sed = new ServiceEngineerServices();
+	ServiceEngineerServices serviceengineerservice = new ServiceEngineerServices();
 	
-	public List<EndUserBean> getsetickets(ServiceEngineerBean se) {
-		return sed.getsetickets(se);
+	public List<EndUserBean> getsetickets(UserBean se) {
+		return serviceengineerservice.getsetickets(se);
 	}
 
 	public List<String> ReportperS() {
-		return sed.ReportperS();
+		return serviceengineerservice.ReportperS();
 	}
 
 	public List<String> ReportperSE() {
-		return sed.ReportperSE();
+		return serviceengineerservice.ReportperSE();
 	}
 
-	public List<String> avgage(ServiceEngineerBean se) {
-		return sed.avgage(se);
+	public List<String> avgage(UserBean se) {
+		return serviceengineerservice.avgage(se);
 	}
 
-	public int ChangeStat(EndUserBean eub) {
-		return sed.ChangeStat(eub);
+	public void ChangeStat(EndUserBean eub) {
+		 serviceengineerservice.ChangeStat(eub);
 	}
 
-	public int ChangePriority(EndUserBean eub) {
-		return sed.ChangePriority(eub);
+	public void ChangePriority(EndUserBean eub) {
+		serviceengineerservice.ChangePriority(eub);
 	}
 }

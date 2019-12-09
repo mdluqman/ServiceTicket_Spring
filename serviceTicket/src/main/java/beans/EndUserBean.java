@@ -16,6 +16,15 @@ import javax.persistence.Table;
 
 public class EndUserBean {
 	
+	@Override
+	public String toString() {
+		return "EndUserBean [ticketId=" + ticketId + ", ticketPriority=" + ticketPriority + ", ticketStatus="
+				+ ticketStatus + ", workStation=" + workStation + ", dateOfIssue=" + dateOfIssue + ", requestedEndDAte="
+				+ requestedEndDAte + ", dateOfAction=" + dateOfAction + ", dateOfCompletion=" + dateOfCompletion
+				+ ", subject=" + subject + ", serviceengineer=" + serviceengineer + ", dept=" + dept + ", username="
+				+ username + "]";
+	}
+
 	@Id
 	private String ticketId;
 	private String ticketPriority;

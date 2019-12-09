@@ -7,14 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import beans.EndUserBean;
 import beans.ServiceEngineerBean;
+import beans.UserBean;
+import exceptions.MethodNotAllowed;
 import repositories.DeptRepository;
 import repositories.EndUserRepository;
+import repositories.LoginRepository;
 import repositories.ServiceEngineerRepository;
+import repositories.usertypeinfoRepository;
 
 @Service
 public class ServiceEngineerServices {
 	@Autowired
 	EndUserRepository eurepo;
+	
+	@Autowired
+	LoginRepository urepo;
 
 	@Autowired
 	ServiceEngineerRepository serepo;
@@ -22,8 +29,9 @@ public class ServiceEngineerServices {
 	@Autowired
 	DeptRepository drepo;
 
-	public List<EndUserBean> getsetickets(ServiceEngineerBean eub) {
-		List<ServiceEngineerBean> s = serepo.findSEbyname(eub.getSEusername());
+	public List<EndUserBean> getsetickets(UserBean user) {
+		List<ServiceEngineerBean> s = serepo.findSEbyname(user);
+		ServiceEngineerBean eub = new ServiceEngineerBean();
 		eub.setServiceEngineerId(s.get(0).getServiceEngineerId());
 		EndUserBean e = new EndUserBean();
 		e.setServiceengineer(eub);
@@ -59,8 +67,12 @@ public class ServiceEngineerServices {
 		return avgseverity;
 	}
 
-	public List<String> avgage(ServiceEngineerBean se) {
-		List<ServiceEngineerBean> s = serepo.findSEbyname(se.getSEusername());
+	public List<String> avgage(UserBean user) {
+		System.out.println(user.toString());
+//		user = urepo.findById(se.getSEusername().getUsername()).get();
+		ServiceEngineerBean se = new ServiceEngineerBean();
+		se.setSEusername(user);
+		List<ServiceEngineerBean> s = serepo.findSEbyname(user);
 		se.setServiceEngineerId(s.get(0).getServiceEngineerId());
 		EndUserBean e = new EndUserBean();
 		e.setServiceengineer(se);
@@ -78,13 +90,14 @@ public class ServiceEngineerServices {
 		return avgseverity;
 	}
 
-	public int ChangeStat(EndUserBean e) {
+	public void ChangeStat(EndUserBean e) {
 		java.util.Date date = new java.util.Date();
 		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 		Optional<EndUserBean> eul = eurepo.findById(e.getTicketId());
 		if(eul.isEmpty())
 		{
-			return 13;
+//			return 13;
+			throw new MethodNotAllowed("Sorry!! but you are trying to deal with a dealt or an Incorrigible ticketid");
 		}
 		else {
 		EndUserBean eubo = eul.get();
@@ -97,7 +110,7 @@ public class ServiceEngineerServices {
 			sebo.setCurrentHighPrioityTicketId(eubo.getTicketId());
 			eurepo.save(eubo);
 			serepo.save(sebo);
-			return 1;
+//			return 1;
 		}
 		// CHANGING STATUS FROM NEW TO WAITING
 		else if (e.getTicketStatus().equals("Waiting") && eubo.getTicketStatus().equals("New")) {
@@ -111,13 +124,13 @@ public class ServiceEngineerServices {
 				eurepo.save(eubo);
 				eurepo.save(eubo1);
 				serepo.save(sebo);
-				return 1;
+//				return 1;
 			} else {
 				sebo.setCurrentHighPrioityTicketId("0");
 				eubo.setTicketStatus("Waiting");
 				eurepo.save(eubo);
 				serepo.save(sebo);
-				return 1;
+//				return 1;
 			}
 		}
 		// changing status FROM WORK_IN_PROGRESS to waiting
@@ -132,13 +145,13 @@ public class ServiceEngineerServices {
 				serepo.save(sebo);
 				eubo.setTicketStatus("Waiting");
 				eurepo.save(eubo);
-				return 1;
+//				return 1;
 			} else {
 				sebo.setCurrentHighPrioityTicketId("0");
 				serepo.save(sebo);
 				eubo.setTicketStatus("Waiting");
 				eurepo.save(eubo);
-				return 1;
+//				return 1;
 			}
 		}
 		// changing status TO WORK_IN_PROGRESS from waiting
@@ -153,13 +166,13 @@ public class ServiceEngineerServices {
 				serepo.save(sebo);
 				eubo.setTicketStatus("WorkInProgress");
 				eurepo.save(eubo);
-				return 1;
+//				return 1;
 			} else {
 				sebo.setCurrentHighPrioityTicketId("0");
 				serepo.save(sebo);
 				eubo.setTicketStatus("WorkInProgress");
 				eurepo.save(eubo);
-				return 1;
+//				return 1;
 			}
 		}
 		// CHANGING STATUS FROM WORK_IN_PROGRESS TO COMPLETED
@@ -179,32 +192,34 @@ public class ServiceEngineerServices {
 				eubo.setTicketStatus("Completed");
 				eubo.setDateOfCompletion(sqlDate.toString());
 				eurepo.save(eubo);
-				return 1;
+//				return 1;
 			} else {
 				sebo.setTotalTickets(b);
 				sebo.setCurrentHighPrioityTicketId("0");
 				eubo.setTicketStatus("Completed");
 				eubo.setDateOfCompletion(sqlDate.toString());
 				eurepo.save(eubo);
-				return 1;
+//				return 1;
 			}
 		}
 		}
-		return 3;
+//		throw new MethodNotAllowed("Sorry!! but you are trying to deal with a dealt or an Incorrigible ticketid");
 	}
 
-	public int ChangePriority(EndUserBean eub) {
+	public void ChangePriority(EndUserBean eub) {
 		Optional<EndUserBean> eul = eurepo.findById(eub.getTicketId());
 		if(eul.isEmpty())
 		{
-			return 13;
+//			return 13;
+			throw new MethodNotAllowed("Sorry!! but you are trying to deal with a dealt or an Incorrigible ticketid");
 		}
 		else {
 		EndUserBean eubo = eul.get();
 		Optional<ServiceEngineerBean> sel = serepo.findById(eubo.getServiceengineer().getServiceEngineerId());
 		ServiceEngineerBean sebo = sel.get();
 		if (eubo.getTicketStatus().equals("WorkInProgress")) {
-			return 12;
+//			return 12;
+			throw new MethodNotAllowed("Sorry you cannot change priority of a ticket you are currently working on!! rather try changing the status to achieve your requirement");
 		} else if (eubo.getTicketStatus().equals("New")) {
 			List<EndUserBean> list1 = eurepo.getwaitORpendtickets(sebo.getServiceEngineerId(), "Waiting");
 			if (list1.size() > 0) {
@@ -215,16 +230,16 @@ public class ServiceEngineerServices {
 				eubo.setTicketPriority(eub.getTicketPriority());
 				eurepo.save(eubo1);
 				eurepo.save(eubo);
-				return 2;
+//				return 2;
 			} else {
 				eubo.setTicketPriority(eub.getTicketPriority());
 				eurepo.save(eubo);
-				return 2;
+//				return 2;
 			}
 		} else {
 			eubo.setTicketPriority(eub.getTicketPriority());
 			eurepo.save(eubo);
-			return 2;
+//			return 2;
 		}
 		}
 	}

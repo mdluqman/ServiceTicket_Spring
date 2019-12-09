@@ -51,48 +51,41 @@ public class AdminController {
 		String port = environment.getProperty("local.server.port");
 		user.setUsertype(uti);
 		int m = 0;
-		if(uti.getUserTypeId()==2)
-		{
+		if (uti.getUserTypeId() == 2) {
 			final String uri1 = "http://localhost:" + port + "/Admin/checkse";
 			RestTemplate restTemplate1 = new RestTemplate();
-			m= restTemplate1.postForObject(uri1, se, Integer.class);
+			m = restTemplate1.postForObject(uri1, se, Integer.class);
 		}
-		if(m == 0)
-		{
-		final String uri = "http://localhost:" + port + "/Admin/registerclient";
-		RestTemplate restTemplate = new RestTemplate();
-		String message = restTemplate.postForObject(uri, user, String.class);
-		System.out.println(message+ "b4");
-		if (message.equals("Registered") && uti.getUserTypeId() == 2) {
-			final String url = "http://localhost:" + port + "/Admin/registerse";
-			RestTemplate restTemplate1 = new RestTemplate();
-			se.setDept(di);
-			se.setCurrentHighPrioityTicketId("0");
-			se.setPending(0);
-			se.setSEusername(user);
-			se.setTotalTickets(0);
-			String notrequired = restTemplate1.postForObject(url, se, String.class);
-			ModelAndView mv = new ModelAndView("/Admin");
-			mv.addObject("message", notrequired);
-			return mv;
-		} else if (message.equals("Registered")) {
-			ModelAndView mv = new ModelAndView("/Admin");
-			mv.addObject("message", message);
-			return mv;
+		if (m == 0) {
+			final String uri = "http://localhost:" + port + "/Admin/registerclient";
+			RestTemplate restTemplate = new RestTemplate();
+			String message = restTemplate.postForObject(uri, user, String.class);
+			if (message.equals("Registered") && uti.getUserTypeId() == 2) {
+				final String url = "http://localhost:" + port + "/Admin/registerse";
+				RestTemplate restTemplate1 = new RestTemplate();
+				se.setDept(di);
+				se.setCurrentHighPrioityTicketId("0");
+				se.setPending(0);
+				se.setSEusername(user);
+				se.setTotalTickets(0);
+				String notrequired = restTemplate1.postForObject(url, se, String.class);
+				ModelAndView mv = new ModelAndView("/Admin");
+				mv.addObject("message", notrequired);
+				return mv;
+			} else if (message.equals("Registered")) {
+				ModelAndView mv = new ModelAndView("/Admin");
+				mv.addObject("message", message);
+				return mv;
+			} else {
+				ModelAndView mv = new ModelAndView("/Admin");
+				mv.addObject("message", message);
+				return mv;
+			}
 		} else {
-			System.out.println(message+ "after");
 			ModelAndView mv = new ModelAndView("/Admin");
-			mv.addObject("message", message);
-			return mv;
-		}
-		}
-		else 
-		{
-			System.out.println(m);
-			ModelAndView mv = new ModelAndView("/Admin");
-			String msg="some other ServiceEngineer Already Exist with the provided seid, kindly give a unique id!!";
+			String msg = "some other ServiceEngineer Already Exist with the provided seid, kindly give a unique id!!";
 			mv.addObject("message", msg);
-			return mv;	
+			return mv;
 		}
 	}
 
@@ -177,29 +170,63 @@ public class AdminController {
 			se.setServiceEngineerId(seid);
 			final String ury = "http://localhost:" + port + "/Admin/deleteSE";
 			RestTemplate restTemplate1 = new RestTemplate();
-			message1 = restTemplate1.postForObject(ury, se, String.class);
-			if (message1.equals("SE Deleted")) {
+			try {
+				restTemplate1.delete(ury + "/" + username + "/" + seid);
 				usertypeinfo u = new usertypeinfo();
 				u.setUserTypeId(y);
 				user.setUsertype(u);
 				RestTemplate restTemplate = new RestTemplate();
-				String message = restTemplate.postForObject(uri, user, String.class);
+//				String message = restTemplate.postForObject(uri, user, String.class);
+				restTemplate.delete(uri + "/" + username);
 				ModelAndView mv = new ModelAndView("/Admin");
-				mv.addObject("message", message);
+				mv.addObject("message", "requested Delete Performed");
 				return mv;
-			} else {
+			} catch (RuntimeException e) {
 				ModelAndView mv = new ModelAndView("/Admin");
-				mv.addObject("message", message1);
+				mv.addObject("message", "cannot delete because he is either only Engineer in the dept or is on a duty");
 				return mv;
 			}
 		} else {
 			usertypeinfo u = new usertypeinfo();
 			u.setUserTypeId(y);
 			user.setUsertype(u);
+			System.out.println("hi " + username);
 			RestTemplate restTemplate = new RestTemplate();
-			String message = restTemplate.postForObject(uri, user, String.class);
+//			String message = restTemplate.postForObject(uri, );
+			restTemplate.delete(uri + "/" + username);
 			ModelAndView mv = new ModelAndView("/Admin");
-			mv.addObject("message", message);
+//			mv.addObject("message", message);
+			mv.addObject("message", "requested Delete Performed");
+			return mv;
+		}
+	}
+
+	@RequestMapping(value = "/getdepts")
+	public ModelAndView getdepts() {
+		String port = environment.getProperty("local.server.port");
+		RestTemplate restTemplate = new RestTemplate();
+		final String uri = "http://localhost:" + port + "/Admin/getdept";
+		ResponseEntity<List<deptInfo>> response = restTemplate.exchange(uri, HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<deptInfo>>() {
+				});
+		ModelAndView mv = new ModelAndView("/Admindeptview");
+		mv.addObject("dept", response.getBody());
+		return mv;
+	}
+
+	@RequestMapping(value = "/departmentcreation")
+	public ModelAndView departments(deptInfo dept) {
+		String port = environment.getProperty("local.server.port");
+		final String uri = "http://localhost:" + port + "/Admin/createdept";
+		RestTemplate restTemplate = new RestTemplate();
+		try {
+			String response = restTemplate.postForObject(uri, dept, String.class);
+			ModelAndView mv = new ModelAndView("/Admin");
+			mv.addObject("message", "Department Successfully registered");
+			return mv;
+		} catch (Exception e) {
+			ModelAndView mv = new ModelAndView("/Admin");
+			mv.addObject("message", "Provide a different name for department");
 			return mv;
 		}
 	}

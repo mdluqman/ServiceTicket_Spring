@@ -18,6 +18,7 @@ ${message}
 <div style="background-color:	#8FBC8F ;margin: 200px 50px 75px	 50px">
   <a href="register" >To Register a Admin / EndUser / ServiceEngineer </a><br/><br/><br/>
 <a href="viewlist" >View/Delete- Clients(ServiceEngineer/Users)</a><br/><br/><br/>
+<a href="getdepts" >View/Create a Department</a><br/><br/><br/>
 
 </div>
 <form action="logout" method="POST">

@@ -63,6 +63,7 @@ public class EndUserController {
 		user.setUsername(username);
 		eub.setusername(user);
 		int x = restTemplate.postForObject(uri, eub, Integer.class);
+		System.out.println(x);
 		if (x == 8) {
 			final String urz = "http://localhost:" + port + "/EndUser/getdept";
 			ResponseEntity<List<deptInfo>> response = restTemplate.exchange(urz, HttpMethod.GET, null,

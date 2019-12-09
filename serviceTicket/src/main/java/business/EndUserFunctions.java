@@ -16,10 +16,10 @@ public class EndUserFunctions {
 	java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
 	@Autowired
-	EndUserServices eud = new EndUserServices();
+	EndUserServices enduserservice = new EndUserServices();
 
 	public List<deptInfo> getdept() {
-		return eud.getdept();
+		return enduserservice.getdept();
 	}
 
 	public int verify(EndUserBean eub) {
@@ -33,7 +33,7 @@ public class EndUserFunctions {
 			} while (v != 1);
 			eub.setTicketId(tid);
 			eub.setTicketStatus("New");
-			int x = eud.raiseticket(eub);
+			int x = enduserservice.raiseticket(eub);
 			return x;
 		} else
 			return 8;
@@ -41,7 +41,7 @@ public class EndUserFunctions {
 
 	private int verifytid(String tid) {
 		// TODO Auto-generated method stub
-		int v = eud.verifytid(tid);
+		int v = enduserservice.verifytid(tid);
 		return v;
 	}
 
@@ -51,6 +51,7 @@ public class EndUserFunctions {
 		java.util.Date cd = null;
 		try {
 			cd = (java.util.Date) new SimpleDateFormat("yyyy-MM-dd").parse(enduser.getRequestedEndDAte());
+//			cd = new SimpleDateFormat("yyyy-MM-dd").parse(enduser.getRequestedEndDAte());
 			if (cd.getYear() > now.getYear()) {
 				return true;
 			} else if (cd.getYear() == now.getYear()) {
@@ -87,6 +88,6 @@ public class EndUserFunctions {
 	}
 
 	public List<EndUserBean> gettickets(EndUserBean eub) {
-		return eud.gettickets(eub);
+		return enduserservice.gettickets(eub);
 	}
 }

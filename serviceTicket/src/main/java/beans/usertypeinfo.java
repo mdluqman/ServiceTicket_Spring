@@ -14,6 +14,11 @@ public class usertypeinfo {
 int userTypeId;
 String typeOfUser;
 
+@Override
+public String toString() {
+	return "usertypeinfo [userTypeId=" + userTypeId + ", typeOfUser=" + typeOfUser + "]";
+}
+
 public int getUserTypeId() {
 	return userTypeId;
 }

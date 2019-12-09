@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import beans.UserBean;
+import beans.usertypeinfo;
 
 @Controller
 public class LoginController {
@@ -29,16 +30,17 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView("/index");
 		try
 		{
-			String result = restTemplate.postForObject(uri, u, String.class);			
-			if (result.equals("Admin")) {
+			usertypeinfo result = restTemplate.postForObject(uri, u, usertypeinfo.class);	
+			System.out.println(result);
+			if (result.getTypeOfUser().equals("Admin")) {
 				mv = new ModelAndView("/Admin");
 				mv.addObject("username", user.getUsername());
 				return mv;
-			} else if (result.equals("ServiceEngineer")) {
+			} else if (result.getTypeOfUser().equals("ServiceEngineer")) {
 				mv = new ModelAndView("/ServiceEngineer");
 				mv.addObject("username", user.getUsername());
 				return mv;
-			} else if (result.equals("EndUser")) {
+			} else if (result.getTypeOfUser().equals("EndUser")) {
 				mv = new ModelAndView("/EndUser");
 				mv.addObject("username", user.getUsername());
 			}

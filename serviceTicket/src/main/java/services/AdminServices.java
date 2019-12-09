@@ -1,5 +1,6 @@
 package services;
 
+import java.awt.print.Printable;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import beans.ServiceEngineerBean;
 import beans.UserBean;
 import beans.deptInfo;
 import beans.usertypeinfo;
+import exceptions.MethodNotAllowed;
 import repositories.DeptRepository;
 import repositories.EndUserRepository;
 import repositories.LoginRepository;
@@ -18,7 +20,7 @@ import repositories.usertypeinfoRepository;
 @Service
 public class AdminServices {
 	@Autowired
-	DeptRepository repo;
+	DeptRepository departmentrepo;
 
 	@Autowired
 	EndUserRepository eurepo;
@@ -33,7 +35,7 @@ public class AdminServices {
 	usertypeinfoRepository utiRepo;
 
 	public List<deptInfo> getdept() {
-		List<deptInfo> l = repo.findAll();
+		List<deptInfo> l = departmentrepo.findAll();
 		return l;
 	}
 
@@ -63,7 +65,7 @@ public class AdminServices {
 		return seRepo.findAll();
 	}
 
-	public String delete(UserBean user) {
+	public void delete(UserBean user) {
 		List<EndUserBean> eubl = eurepo.findbyname(user.getUsername());
 		ServiceEngineerBean s = new ServiceEngineerBean();
 		for (int i = 0; i < eubl.size(); i++) {
@@ -102,10 +104,10 @@ public class AdminServices {
 			}
 		}
 		userRepo.deleteById(user.getUsername());
-		return "requested Delete Performed";
+//		return "requested Delete Performed";
 	}
 
-	public String deletese(ServiceEngineerBean se) {
+	public void deletese(ServiceEngineerBean se) {
 		Optional<ServiceEngineerBean> s = seRepo.findById(se.getServiceEngineerId());
 		ServiceEngineerBean sebo = s.get();
 		List<ServiceEngineerBean> sel = seRepo.findSEbydept(sebo.getDept());
@@ -114,14 +116,14 @@ public class AdminServices {
 		if (sebo.getDept().getDeptNo() != 4) {
 			if (sel.size() > 1) {
 				String x = del(sebo);
-				return x;
 			} else
-				return "you cannot delete the only serviceEngineer in " + sebo.getDept().getDeptName() + "Department";
+//				return "you cannot delete the only serviceEngineer in " + sebo.getDept().getDeptName() + " Department";
+				throw new MethodNotAllowed("you cannot delete the only serviceEngineer in " + sebo.getDept().getDeptName() + "Department");
 		} else if (sel.size() > 2) {
 			String x = del(sebo);
-			return x;
 		} else {
-			return "you cannot delete the only serviceEngineer in " + sebo.getDept().getDeptName() + "Department";
+//			return "you cannot delete the only serviceEngineer in " + sebo.getDept().getDeptName() + " Department";
+			throw new MethodNotAllowed("you cannot delete the only serviceEngineer in " + sebo.getDept().getDeptName() + "Department");
 
 		}
 	}
@@ -157,5 +159,19 @@ public class AdminServices {
 		}
 		else 
 			return 1;
+	}
+
+	public String createdept(deptInfo dept) {
+		// TODO Auto-generated method stub
+		List<deptInfo>  x = departmentrepo.getdepts(dept.getDeptName());
+		if(x.isEmpty())
+		{
+			departmentrepo.save(dept);
+			return "departmentCreated";
+		}
+		else 
+			throw new MethodNotAllowed("department with same name already exists");
+			
+		
 	}
 }

@@ -12,43 +12,48 @@ import services.AdminServices;
 @Component
 public class AdminFunctions {
 	@Autowired
-	AdminServices ad = new AdminServices();
+	AdminServices adminservice = new AdminServices();
 
 	public List<deptInfo> getdept() {
-		return ad.getdept();
+		return adminservice.getdept();
 	}
 
 	public String registerinbean(UserBean user) {
-		return ad.registerinbean(user);
+		return adminservice.registerinbean(user);
 	}
 
 	public String registerinsebean(ServiceEngineerBean se) {
 
-		return ad.registerinsebean(se);
+		return adminservice.registerinsebean(se);
 	}
 
 	public List<usertypeinfo> getusertype() {
-		return ad.getusertype();
+		return adminservice.getusertype();
 	}
 
 	public List<UserBean> getclient() {
-		return ad.getclient();
+		return adminservice.getclient();
 	}
 
 	public List<ServiceEngineerBean> getse() {
-		return ad.getse();
+		return adminservice.getse();
 	}
 
-	public String delete(UserBean user) {
-		return ad.delete(user);
+	public void delete(UserBean user) {
+		adminservice.delete(user);
 	}
 
-	public String deletese(ServiceEngineerBean se) {
-		return ad.deletese(se);
+	public void deletese(ServiceEngineerBean se) {
+		adminservice.deletese(se);
 	}
 
 	public int checkse(ServiceEngineerBean se) {
 		// TODO Auto-generated method stub
-		return ad.checkse(se);
+		return adminservice.checkse(se);
+	}
+
+	public String createdept(deptInfo dept) {
+		// TODO Auto-generated method stub
+		return adminservice.createdept(dept);
 	}
 }

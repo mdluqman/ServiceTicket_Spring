@@ -20,10 +20,10 @@ public interface EndUserRepository extends JpaRepository<EndUserBean, String>{
 	@Query("select e from EndUserBean e where e.serviceengineer= :seid order by  field(ticketStatus,'New','Waiting','Completed') , ticketPriority desc , dateOfIssue desc ")
 	List<EndUserBean> getsetickets(@Param("seid") ServiceEngineerBean serviceEngineerBean);	
 	
-	@Query(value="select (AVG(TIMESTAMPDIFF(day,  dateOfCompletion, dateOfAction))) from EndUserBean where ticketStatus = ?1 and ticketPriority=?2", nativeQuery = true)
+	@Query(value="select (AVG(TIMESTAMPDIFF(day, dateOfAction, dateOfCompletion ))) from EndUserBean where ticketStatus = ?1 and ticketPriority=?2", nativeQuery = true)
 	String ReportperS(String stat,int prio);
 	
-	@Query(value="select (AVG(TIMESTAMPDIFF(day, dateOfCompletion, dateOfAction))) from EndUserBean  where ticketStatus = ?1 and serviceengineer_ServiceEngineerId=?2", nativeQuery = true)
+	@Query(value="select (AVG(TIMESTAMPDIFF(day, dateOfAction , dateOfCompletion))) from EndUserBean  where ticketStatus = ?1 and serviceengineer_ServiceEngineerId=?2", nativeQuery = true)
 	String ReportperSE(String stat,String string);
 	
 	@Query(value="select TIMESTAMPDIFF(day, dateOfIssue, sysdate()) from EndUserBean where ticketId = ?1", nativeQuery = true)

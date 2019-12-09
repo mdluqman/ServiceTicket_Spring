@@ -22,7 +22,7 @@ public class ServiceEngineerBean {
 
 	@OneToOne
 	@JoinColumn(name = "SEusername")
-	UserBean SEusername = new UserBean();
+	private UserBean SEusername ;
 	@ManyToOne
 	@JoinColumn(name = "deptNo")
 	private deptInfo dept;
@@ -32,7 +32,11 @@ public class ServiceEngineerBean {
 	}
 
 	public void setSEusername(UserBean sEusername) {
-		SEusername = sEusername;
+		this.SEusername = sEusername;
+	}
+	public void setUser(UserBean user) {
+		setSEusername(user);
+		this.SEusername = user;
 	}
 
 	public String getServiceEngineerId() {
@@ -80,5 +84,9 @@ public class ServiceEngineerBean {
 		return "ServiceEngineerBean [ServiceEngineerId=" + ServiceEngineerId + ", totalTickets=" + totalTickets
 				+ ", currentHighPrioityTicketId=" + currentHighPrioityTicketId + ", pending=" + pending
 				+ ", SEusername=" + SEusername + ", dept=" + dept + "]";
+	}
+	
+	public ServiceEngineerBean() {
+		
 	}
 }
